@@ -12,6 +12,7 @@ interface Config {
 interface Environment {
   app: { [key: string]: string | number };
   db: { [key: string]: string | number };
+  bot: { [key: string]: string };
 }
 
 
@@ -22,6 +23,11 @@ const development = {
  db: {
    name: process.env.DEV_DB_NAME,
    connect: process.env.MONGO_URI
+ },
+ bot: {
+  slackClientId: process.env.SLACK_CLIENT_ID,
+  slackClientSecret: process.env.SLACK_CLIENT_SECRET,
+  slackVerificationToken: process.env.SLACK_VERIFICATION_TOKEN
  }
 };
 const test = {
@@ -31,6 +37,11 @@ const test = {
  db: {
    name: process.env.TEST_DB_NAME,
    connect: process.env.MONGO_URI_TEST
+ },
+ bot: {
+  slackClientId: process.env.SLACK_CLIENT_ID,
+  slackClientSecret: process.env.SLACK_CLIENT_SECRET,
+  slackVerificationToken: process.env.SLACK_VERIFICATION_TOKEN
  }
 };
 const production = {
@@ -40,6 +51,11 @@ const production = {
   db: {
     name: process.env.PROD_DB_NAME,
     connect: process.env.MONGO_URI
+  },
+  bot: {
+    slackClientId: process.env.SLACK_CLIENT_ID,
+    slackClientSecret: process.env.SLACK_CLIENT_SECRET,
+    slackVerificationToken: process.env.SLACK_VERIFICATION_TOKEN
   }
 };
 
