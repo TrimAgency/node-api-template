@@ -5,10 +5,9 @@ import * as mongoose from "mongoose";
 import * as passport from "passport";
 import * as cors from "cors";
 import { routes } from "./routes";
-import { strategy } from "./config/passport";
-import { config } from "./config";
+import { config } from "./config/config";
 
-passport.use(strategy);
+// passport.use(strategy);
 
 const app = express();
 const environment = process.env.NODE_ENV;
