@@ -6,8 +6,9 @@ import * as passport from "passport";
 import * as cors from "cors";
 import { routes } from "./routes";
 import { config } from "./config/config";
+import { strategy } from "./config/passport";
 
-// passport.use(strategy);
+passport.use(strategy);
 
 const app = express();
 const environment = process.env.NODE_ENV;
