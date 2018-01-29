@@ -52,6 +52,17 @@ describe("Login Route", () => {
                      .end(tellJasmineDone(done));
   });
 
-  // TODO: Add a test for /api/user
+  // // TODO: Add a test for /api/user
+  it("should create a user and return 201 ok", (done) => {
+    const signup = { "email": "user2@test.com", "password": "password2" };
+
+    supertest(server).post("/api/create")
+                     .send(signup)
+                     .expect(201)
+                    //  .expect((res: any) => {
+                    //    if (res.body.message !== "ok") throw new Error("Bad Request");
+                    //  })
+                     .end(tellJasmineDone(done));
+  });
 });
 
