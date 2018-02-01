@@ -6,7 +6,7 @@ import { SlackControllerExtended } from "../botkit-extend";
 
 const env = process.env.NODE_ENV;
 
-// TODO: correct interface for botConfigController
+// TODO: Correct interface for botConfigController. Once Botkit releases updated package.
 export const incomingBotWebhooks = (req: Request,
                                     res: Response,
                                     next: NextFunction,
