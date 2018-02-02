@@ -8,6 +8,9 @@ import { routes } from "./routes";
 import { config } from "./config/config";
 import { strategy } from "./config/passport";
 
+// To use the bot
+import { botConfigController } from "../src/bot/bot";
+
 passport.use(strategy);
 
 const app = express();
@@ -19,7 +22,7 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-const db = mongoose.connect(`${envConfig.db.connect}${envConfig.db.name}`,  {useMongoClient: true}, err => {
+export const db = mongoose.connect(`${envConfig.db.connect}${envConfig.db.name}`,  {useMongoClient: true}, err => {
   if (err) {
     console.log(`MongoDB connection error. Please make sure MongoDB is running. Error:${err}`);
   }
@@ -48,3 +51,6 @@ app.listen(port, () => {
 });
 
 module.exports = app;
+
+// Expose bot to the server
+botConfigController.webserver = app;
