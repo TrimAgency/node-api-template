@@ -4,32 +4,32 @@ import { botConfigController } from "../bot/bot";
 import { SlackControllerExtended } from "../botkit-extend";
 import { config } from "../config/config";
 
-export const oauth = (botConfigController: Botkit.SlackController) => {
-  const handler = {
-    login: (req: Request, res: Response) => {
-      res.redirect(botConfigController.getAuthorizeURL());
-    },
-    oauth: (req: Request, res: Response) => {
-      const code = req.query.code;
-      const state = req.query.state;
+// export const oauth = (botConfigController: Botkit.SlackController) => {
+//   const handler = {
+//     login: (req: Request, res: Response) => {
+//       res.redirect(botConfigController.getAuthorizeURL());
+//     },
+//     oauth: (req: Request, res: Response) => {
+//       const code = req.query.code;
+//       const state = req.query.state;
 
-      // Spawn a generic bot with no token to start
-      let slackApi = botConfigController.spawn({});
+//       // Spawn a generic bot with no token to start
+//       let slackApi = botConfigController.spawn({});
 
-      const opts = {
-          client_id: botConfigController.config.clientId,
-          client_secret: botConfigController.config.clientSecret,
-          code: code
-      };
+//       const opts = {
+//           client_id: botConfigController.config.clientId,
+//           client_secret: botConfigController.config.clientSecret,
+//           code: code
+//       };
 
-      slackApi.api.oauth.access(opts, (err, auth)) => {
+//       slackApi.api.oauth.access(opts, (err, auth)) => {
 
-      };
+//       };
 
-      }
-    }
-  }
-};
+//       }
+//     }
+//   }
+// };
 
 // var handler = {
 //         login: (req, res) => {
