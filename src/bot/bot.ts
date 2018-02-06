@@ -1,6 +1,6 @@
 import * as Botkit from "botkit";
 import { config } from "../config/config";
-import { SlackControllerExtended } from "../botkit-extend";
+// import { SlackControllerExtended } from "../botkit-extend";
 import { botStorage } from "../bot/bot-storage";
 
 // Bot Controllers

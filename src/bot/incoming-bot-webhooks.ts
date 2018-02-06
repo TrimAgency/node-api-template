@@ -1,7 +1,6 @@
-import * as Botkit from "botkit";
-import { botConfigController } from "../bot/bot";
 import { Response, Request, NextFunction } from "express";
 import { config } from "../config/config";
+import { botConfigController } from "../bot/bot";
 
 const env = process.env.NODE_ENV;
 
