@@ -2,10 +2,11 @@ import { Express } from "express";
 import * as passport from "passport";
 import { errorHandler } from "./middleware/error.handler";
 import { incomingBotWebhooks } from "./bot/incoming-bot-webhooks";
-// import { oauth } from "./bot/oauth";
+import { oauth } from "./bot/oauth";
 
 import * as loginController from "./controllers/login.controller";
 import * as signupController from "./controllers/signup.controller";
+import { botConfigController } from "./bot/bot";
 
 export function routes(app: Express) {
   // add routes here
@@ -16,8 +17,8 @@ export function routes(app: Express) {
 
   // To use the bot
   app.post("/slack/receive", incomingBotWebhooks);
-  // app.get("/bot/install", oauth);
-  // app.get("/oauth", oauth);
+  app.get("/bot/login", oauth(botConfigController).login);
+  app.get("/oauth", oauth(botConfigController).oauth);
 
   app.use(errorHandler);
 }

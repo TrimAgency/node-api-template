@@ -1,94 +1,65 @@
 import * as Botkit from "botkit";
 import { Response, Request, NextFunction } from "express";
 import { botConfigController } from "../bot/bot";
-import { SlackControllerExtended } from "../botkit-extend";
+// import { SlackControllerExtended } from "../botkit-extend";
 import { config } from "../config/config";
+import { Error } from "mongoose";
+import { Identity } from "botkit";
 
-// export const oauth = (botConfigController: Botkit.SlackController) => {
-//   const handler = {
-//     login: (req: Request, res: Response) => {
-//       res.redirect(botConfigController.getAuthorizeURL());
-//     },
-//     oauth: (req: Request, res: Response) => {
-//       const code = req.query.code;
-//       const state = req.query.state;
+const env = process.env.NODE_ENV;
 
-//       // Spawn a generic bot with no token to start
-//       let slackApi = botConfigController.spawn({});
+// TODO: Fix type of botconfigcontroller here
+export const oauth = (botConfigController: any) => {
+  const handler = {
+    login: (req: Request, res: Response) => {
+      res.redirect(botConfigController.getAuthorizeURL());
+    },
+    oauth: (req: Request, res: Response) => {
+      const code = req.query.code;
+      const state = req.query.state;
 
-//       const opts = {
-//           client_id: botConfigController.config.clientId,
-//           client_secret: botConfigController.config.clientSecret,
-//           code: code
-//       };
+      console.log("***CODE***", code);
+      console.log("***STATE***", state);
 
-//       slackApi.api.oauth.access(opts, (err, auth)) => {
+      const slackApi = botConfigController.spawn({});
 
-//       };
+      console.log("***SLACKAPI***", slackApi);
 
-//       }
-//     }
-//   }
-// };
+      const opts = {
+        clientId: config[env].bot.slackClientId,
+        clientSecret: config[env].bot.slackClientSecret,
+        code: code
+      };
 
-// var handler = {
-//         login: (req, res) => {
-//             res.redirect(controller.getAuthorizeURL());
-//         },
-//         oauth: (req, res) => {
-//             var code = req.query.code;
-//             var state = req.query.state;
+      console.log("***OPTIONS BEFORE REQUEST***", opts);
 
-//             // we need to use the Slack API, so spawn a generic bot with no token
-//             var slackapi = controller.spawn({});
+      // TODO: Need to change type of auth here
+      slackApi.api.oauth.access(opts, (err: Error, auth: any) => {
+        if (err) {
+          console.log("***OPTIONS AFTER REQUEST***", opts);
+          console.log("***OAUTH ERROR***", err);
+          return res.json({error: err});
+        }
 
-//             var opts = {
-//                 client_id: controller.config.clientId,
-//                 client_secret: controller.config.clientSecret,
-//                 code: code
-//             };
+        const scopes = auth.scope.split(/\,/);
+        console.log("***SCOPES***:", scopes);
 
-//             slackapi.api.oauth.access(opts, (err, auth) => {
+        slackApi.api.auth.test({token: auth.access_token}, (err: Error, identity: Botkit.Identity) => {
+          if (err) {
+              return res.send("Error logging in with Slack");
+          }
 
-//                 if (err) {
-//                     debug('Error confirming oauth', err);
-//                     return res.redirect('/login_error.html');
-//                 }
+          auth.identity = identity;
+          botConfigController.trigger("oauth:success", [auth]);
 
-//                 var scopes = auth.scope.split(/\,/);
+          res.cookie("team_id", auth.team_id);
+          res.cookie("bot_user_id", auth.bot.bot_user_id);
+          res.redirect(auth.identity.url);
+        });
+      });
 
-//                 // uses the token we got from the oauth
-//                 // to call auth.test to make sure the token is valid
-//                 // but also so that we reliably have the team_id field!
-//                 slackapi.api.auth.test({token: auth.access_token}, (err, identity) => {
+    }
+  };
 
-//                     if (err) {
-//                         debug('Error fetching user identity', err);
-//                         return res.send('Error logging in with Slack');
-//                     }
-
-//                     auth.identity = identity;
-//                     controller.trigger('oauth:success', [auth]);
-
-//                     res.cookie('team_id', auth.team_id);
-//                     res.cookie('bot_user_id', auth.bot.bot_user_id);
-//                     res.redirect(auth.identity.url);
-
-//                 });
-
-
-//             });
-//         }
-//     }
-
-// Create a /login link
-// This link will send user's off to Slack to authorize the app
-
-// change this to /
-// webserver.get('/login', handler.login);
-
-// Create a /oauth link
-// This is the link that receives the postback from Slack's oauth system
-// webserver.get('/oauth', handler.oauth);
-
-// return handler;
+  return handler;
+};
