@@ -8,9 +8,6 @@ import { routes } from "./routes";
 import { config } from "./config/config";
 import { strategy } from "./config/passport";
 
-// To use the bot
-import { botConfigController } from "../src/bot/bot";
-
 passport.use(strategy);
 
 const app = express();
@@ -51,6 +48,3 @@ app.listen(port, () => {
 });
 
 module.exports = app;
-
-// Expose bot to the server
-botConfigController.webserver = app;

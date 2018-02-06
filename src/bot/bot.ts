@@ -1,6 +1,7 @@
 import * as Botkit from "botkit";
 import { config } from "../config/config";
 import { SlackControllerExtended } from "../botkit-extend";
+import { botStorage } from "../bot/bot-storage";
 
 // Bot Controllers
 import { greeting } from "../controllers/greetings.bot.controller";
@@ -8,13 +9,12 @@ import { greeting } from "../controllers/greetings.bot.controller";
 const env = process.env.NODE_ENV;
 
 const botOptions = {
-  clientId: config[env].bot.SLACK_CLIENT_ID,
-  clientSecret: config[env].bot.SLACK_CLIENT_SECRET,
+  clientId: config[env].bot.slackClientId,
+  clientSecret: config[env].bot.slackClientSecret,
   scopes: ["bot"],
   // opt-out of Botkit stat collection
   stats_optout: true,
-  // TODO: ADD STORAGE
-  // storage: ADD_STORAGE_MODULE_HERE
+  storage: botStorage()
 };
 
 // TODO: Add SlackControllerExtended here as the type for botConfigController
