@@ -3,6 +3,7 @@ import { default as Team, TeamModel } from "../models/team.model";
 import { config } from "../config/config";
 
 // Finalize the bot installation with oauth
+// TODO: MAY HAVE A LOT OF ERRORS HERE. Need to finish oauth to confirm how this is working.
 export const teamRegistration = (botConfigController: any) => {
   botConfigController.on("oauth:success", (payload: any) => {
     if (!payload.identity.team_id) {

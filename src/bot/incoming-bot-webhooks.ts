@@ -9,11 +9,13 @@ export const incomingBotWebhooks = (req: Request,
                                     res: Response,
                                     next: NextFunction) => {
 
-  if (config[env].bot.slackVerificationToken === req.body.token) {
+  // TODO: Once we receive messages: Verify that I no longer need this condition now
+  // that token is added to bot config
+  // if (config[env].bot.slackVerificationToken === req.body.token) {
     // Response to slack that webhook was received
     res.status(200);
 
     botConfigController.handleWebhookPayload(req, res);
-  }
+  // }
 };
 

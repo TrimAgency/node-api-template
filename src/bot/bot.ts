@@ -16,7 +16,8 @@ const botOptions = {
   scopes: ["bot"],
   // opt-out of Botkit stat collection
   stats_optout: true,
-  storage: botStorage()
+  storage: botStorage(),
+  clientVerificationToken: config[env].bot.slackVerificationToken
 };
 
 // TODO: Add SlackControllerExtended here as the type for botConfigController

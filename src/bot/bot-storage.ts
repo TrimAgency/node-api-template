@@ -4,15 +4,15 @@ import { default as Channel, ChannelModel } from "../models/channel.model";
 import * as mongoose from "mongoose";
 
 // Custom bot storage set-up
-export const botStorage = () => {
-  // Confirm if needed
+export const botStorage = (config = {}) => {
+  // TODO: Confirm if needed. Console logs an empty object
   // In the argument, config = {}
-  // if (config) {
-  //   console.log(config);
-  //   // config = {
-  //   //   path: "./",
-  //   // };
-  // }
+  if (config) {
+    console.log(config);
+    // config = {
+    //   path: "./",
+    // };
+  }
 
   const teamsDb = Team;
   const usersDb = User;
