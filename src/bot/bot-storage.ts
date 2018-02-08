@@ -3,6 +3,7 @@ import { default as Team, TeamModel } from "../models/team.model";
 import { default as Channel, ChannelModel } from "../models/channel.model";
 import * as mongoose from "mongoose";
 
+// Custom bot storage set-up
 export const botStorage = () => {
   // Confirm if needed
   // In the argument, config = {}

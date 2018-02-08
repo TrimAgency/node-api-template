@@ -2,13 +2,9 @@ import * as Botkit from "botkit";
 import { Response, Request, NextFunction } from "express";
 import { botConfigController } from "../bot/bot";
 // import { SlackControllerExtended } from "../botkit-extend";
-import { config } from "../config/config";
-import { Error } from "mongoose";
-import { Identity } from "botkit";
 
-const env = process.env.NODE_ENV;
-
-// TODO: Fix type of botconfigcontroller here
+// Install the bot to multiple teams using oauth
+// TODO: Fix type of botConfigcontroller here
 export const oauth = (botConfigController: any) => {
   const handler = {
     login: (req: Request, res: Response) => {
@@ -26,8 +22,8 @@ export const oauth = (botConfigController: any) => {
       console.log("***SLACKAPI***", slackApi);
 
       const opts = {
-        clientId: config[env].bot.slackClientId,
-        clientSecret: config[env].bot.slackClientSecret,
+        clientId: botConfigController.config.clientId,
+        clientSecret: botConfigController.config.clientSecret,
         code: code
       };
 
