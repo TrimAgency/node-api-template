@@ -1,12 +1,12 @@
 import * as mongoose from "mongoose";
 
 export type ChannelModel = mongoose.Document & {
-  id: string,
+  slackId: string,
   name: string
 };
 
 const channelSchema = new mongoose.Schema({
-  id: { type: String, required: true },
+  slackId: { type: String, required: true },
   name: { type: String, required: true },
 }, { timestamps: true });
 

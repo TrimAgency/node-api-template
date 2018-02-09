@@ -1,14 +1,14 @@
 import * as mongoose from "mongoose";
 
 export type TeamModel = mongoose.Document & {
-  id: string,
+  slackId: string,
   name: string,
   url: string,
   createdBy: string
 };
 
 const teamSchema = new mongoose.Schema({
-  id: { type: String, required: true },
+  slackId: { type: String, required: true },
   name: { type: String, required: true },
   url: { type: String, required: true },
   createdBy:  { type: String, required: true }
