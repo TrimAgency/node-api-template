@@ -1,11 +1,13 @@
 import * as Botkit from "botkit";
 import { config } from "../config/config";
-// import { SlackControllerExtended } from "../botkit-extend";
 import { botStorage } from "../bot/bot-storage";
+// import { SlackControllerExtended } from "../botkit-extend";
+
+// Bot Controllers for Intallation
+import * as teamRegistation from "./team-registration";
 
 // Bot Conversation Controllers
 import { greeting } from "../controllers/greetings.bot.controller";
-import { teamRegistration } from "../bot/team-registration.bot.controller";
 
 const env = process.env.NODE_ENV;
 
@@ -26,5 +28,5 @@ botConfigController.startTicking();
 
 // Pass botConfig into bot controllers
 greeting(botConfigController);
-teamRegistration(botConfigController);
+teamRegistation(botConfigController);
 
