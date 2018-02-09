@@ -4,6 +4,7 @@ import { default as Channel, ChannelModel } from "../models/channel.model";
 import * as mongoose from "mongoose";
 
 // Custom bot storage set-up
+// TODO: ISSUE: Compiling Error for results of bot-storage with what is needed in the botOptions of the bot file
 export const botStorage = (config = {}) => {
   // TODO: Confirm if needed. Console logs an empty object
   // In the argument, config = {}
@@ -27,8 +28,7 @@ export const botStorage = (config = {}) => {
           console.log("***THERE WAS AN ERROR FINDING THE TEAM IN THE FINDRECORD METHOD***", err);
           rej(err);
         } else if (!doc) {
-          // rej(new Error("Unable to find team record in findrecord method"));
-          rej(err);
+          rej(new Error("Unable to find team record in findrecord method"));
         } else {
           res(doc);
           console.log("***WE FOUND A TEAM IN THE DB!***", doc);
@@ -74,7 +74,8 @@ export const botStorage = (config = {}) => {
           return team;
         } catch (error) {
           error;
-          console.log("****LAST MESSAGE ERROR: THERE WAS AN ERROR IN THE FIND RECOD METHOD...****", error);
+          // TODO: We need this error to go up to team registration. Error is caught here, and team registration does not continue
+          console.log("****LAST MESSAGE ERROR: THERE WAS AN ERROR IN THE FINDRECORD METHOD:****", error);
         }
       },
       save: async (teamData: TeamModel) => {
