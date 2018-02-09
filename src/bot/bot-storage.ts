@@ -66,7 +66,7 @@ export const botStorage = (config = {}) => {
   }
 
   const storage = {
-    teams: {
+    teams:  {
       get: async (teamId: string) => {
         try {
           const team = await findRecord(teamId, teamsDb);
