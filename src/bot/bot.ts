@@ -1,8 +1,6 @@
 import * as Botkit from "botkit";
 import { config } from "../config/config";
-import { botStorage } from "../bot/bot-storage";
-// import { SlackControllerExtended } from "../botkit-extend";
-
+const botkitStorageMongo = require("botkit-storage-mongo");
 // Bot Controllers for Intallation
 import * as teamRegistation from "./team-registration";
 
@@ -19,7 +17,8 @@ const botOptions = {
   scopes: ["bot"],
   // opt-out of Botkit stat collection
   stats_optout: true,
-  storage: botStorage,
+  // mongoUri includes db name, so no need for us to have our own storage module
+  storage: botkitStorageMongo({ mongoUri: `${config[env].db.connect}${config[env].db.name}` }),
   clientVerificationToken: config[env].bot.slackVerificationToken
 };
 
@@ -30,4 +29,3 @@ botConfigController.startTicking();
 // Pass botConfig into bot controllers
 greeting(botConfigController);
 teamRegistation(botConfigController);
-
