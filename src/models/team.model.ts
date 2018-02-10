@@ -8,7 +8,7 @@ export type TeamModel = mongoose.Document & {
 };
 
 const teamSchema = new mongoose.Schema({
-  slackId: { type: String, required: true },
+  id: { type: String, required: true },
   name: { type: String, required: true },
   url: { type: String, required: true },
   createdBy:  { type: String, required: true }
