@@ -18,8 +18,6 @@ const botOptions = {
   scopes: ["bot"],
   // opt-out of Botkit stat collection
   stats_optout: true,
-  // mongoUri includes db name, so no need for us to have our own storage module
-  //storage: botkitStorageMongo({ mongoUri: `${config[env].db.connect}${config[env].db.name}` }),
   storage: botStorage(),
   clientVerificationToken: config[env].bot.slackVerificationToken
 };

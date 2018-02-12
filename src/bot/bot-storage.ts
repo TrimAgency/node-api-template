@@ -15,7 +15,7 @@ export const botStorage = (config = {}) => {
   const channelModel = channel;
 
   function findRecord(recordId: string, model: mongoose.Model<mongoose.Document>, cb: any) {
-      model.findOne({ slackId: recordId }, cb);
+    model.findOne({ slackId: recordId }, cb);
   }
 
   function saveRecord(modelData: mongoose.Document,

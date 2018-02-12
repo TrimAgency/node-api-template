@@ -8,7 +8,6 @@ module.exports = controller => {
         }
         controller.storage.teams.get(payload.identity.team_id, (err, team) => {
             if (err) {
-               // TODO: ISSUE: Error not being thrown when team is not found; New team not being saved
               // TODO: Throw better type of error here?
               console.log('Could not load team from storage system', payload.identity.team_id, err);
             }
@@ -18,13 +17,12 @@ module.exports = controller => {
             var new_team = false;
             if (!team) {
                 team = {
-                    id: payload.identity.team_id,
+                    slackId: payload.identity.team_id,
                     createdBy: payload.identity.user_id,
                     url: payload.identity.url,
                     name: payload.identity.team,
                 };
                 var new_team= true;
-                console.log("*****NEW TEAM?****", new_team);
             }
 
             team.bot = {
@@ -42,22 +40,25 @@ module.exports = controller => {
                   console.log('Error: could not authenticate bot user', err);
                 } else {
                     team.bot.name = bot_auth.user;
+                    console.log("**TEST BOT NAME**", team.bot.name);
 
                     // This information is expect by Botkit
                     testbot.identity = bot_auth;
                     testbot.team_info = team;
 
-                    console.log("***WAS A TEST BOT CREATED TO VERIFY THE TOKEN?", testbot);
+                    console.log("**TEST BOT IDENTITY**", testbot.identity);
+                    console.log("**TEST BOT TEAM INFO**", testbot.team_info);
 
                     // Comment from Botkit here: Replace this with your own database!
                     // TODO: Can this be changed out for our own database?
                     controller.storage.teams.save(team, (err, id) => {
+                        console.log("**IS THIS A NEW TEAM THAT WE ARE SAVING?**", new_team);
                         if (err) {
                             // TODO: Throw better type of error here?
                             console.log('Error: could not save team record:', err);
                         } else {
                             if (new_team) {
-                                console.log("**TEAM CREATED FOR THE NEW TEAM?**". new_team);
+                                console.log("**TEAM CREATED FOR THE NEW TEAM?**", new_team);
                                 controller.trigger('create_team', [testbot, team]);
                             } else {
                                 console.log("**DID WE UPDATE AN OLD TEAM?**");

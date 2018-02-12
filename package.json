@@ -1,7 +1,7 @@
 {
-  "name": "blog-api",
+  "name": "node-api-template",
   "version": "0.0.1",
-  "description": "My personal blog platform API",
+  "description": "Node API Template",
   "main": "dist/server.js",
   "scripts": {
     "start": "npm run serve",
