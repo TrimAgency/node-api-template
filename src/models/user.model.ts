@@ -2,12 +2,14 @@ import * as bcrypt from "bcrypt-nodejs";
 import * as mongoose from "mongoose";
 
 export type UserModel = mongoose.Document & {
+  slackId: string,
   email: string,
   password: string,
   comparePassword: (candidatePassword: string, cb: (err: any, isMatch: any) => {}) => void
 };
 
 const userSchema = new mongoose.Schema({
+  slackId: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true, select: false }
 }, { timestamps: true });

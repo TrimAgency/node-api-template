@@ -1,20 +1,18 @@
 import { Response, Request, NextFunction } from "express";
 import { config } from "../config/config";
-import { SlackControllerExtended } from "../botkit-extend";
+import { botConfigController } from "../bot/bot";
 
 const env = process.env.NODE_ENV;
 
-// TODO: correct interface for botConfigController
+// Handle the messages received from Slack
 export const incomingBotWebhooks = (req: Request,
                                     res: Response,
-                                    next: NextFunction,
-                                    botConfigController: SlackControllerExtended ) => {
+                                    next: NextFunction) => {
 
-  if (config[env].bot.SLACK_VERIFICATION_TOKEN === req.body.token || JSON.parse(req.body.payload).token) {
-    // Response to slack that webhook was recevied
+  if (config[env].bot.slackVerificationToken === req.body.token) {
+    // Response to slack that webhook was received
     res.status(200);
 
-    // Passing webhook to be processed by Botkit
     botConfigController.handleWebhookPayload(req, res);
   }
 };

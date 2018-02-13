@@ -1,22 +1,31 @@
 import * as Botkit from "botkit";
 import { config } from "../config/config";
+import { botStorage } from "./bot-storage";
+const botkitStorageMongo = require("botkit-storage-mongo");
+// Bot Controllers for Intallation
+import * as teamRegistation from "./team-registration";
 
-// Bot Controllers
+// Bot Conversation Controllers
 import { greeting } from "../controllers/greetings.bot.controller";
 
 const env = process.env.NODE_ENV;
 
+// Initiate the bot controller and run the bot
 const botOptions = {
-  clientId: config[env].bot.SLACK_CLIENT_ID,
-  clientSecret: config[env].bot.SLACK_CLIENT_SECRET,
+  clientId: config[env].bot.slackClientId,
+  clientSecret: config[env].bot.slackClientSecret,
   scopes: ["bot"],
   // opt-out of Botkit stat collection
-  stats_optout: true
+  stats_optout: true,
+  storage: botStorage(),
+  // TODO: Confirm if this is working
+  // clientVerificationToken: config[env].bot.slackVerificationToken
 };
 
-export const botConfigController = Botkit.slackbot(botOptions);
+// TODO: Add SlackControllerExtended here as the type for botConfigController
+export const botConfigController: any = Botkit.slackbot(botOptions);
 botConfigController.startTicking();
 
 // Pass botConfig into bot controllers
 greeting(botConfigController);
-
+teamRegistation(botConfigController);

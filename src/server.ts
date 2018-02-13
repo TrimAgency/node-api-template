@@ -19,7 +19,7 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-const db = mongoose.connect(`${envConfig.db.connect}${envConfig.db.name}`,  {useMongoClient: true}, err => {
+export const db = mongoose.connect(`${envConfig.db.connect}${envConfig.db.name}`,  {useMongoClient: true}, err => {
   if (err) {
     console.log(`MongoDB connection error. Please make sure MongoDB is running. Error:${err}`);
   }

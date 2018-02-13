@@ -52,6 +52,5 @@ describe("Login Route", () => {
                      .end(tellJasmineDone(done));
   });
 
-  // TODO: Add a test for /api/user
 });
 
