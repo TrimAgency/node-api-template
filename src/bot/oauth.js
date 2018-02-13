@@ -1,4 +1,5 @@
 // Initiate oauth for the bot and start installation process
+// TODO: Better errors/messages for the console log messages below
 module.exports = (webserver, controller) => {
 
     var handler = {
@@ -21,10 +22,8 @@ module.exports = (webserver, controller) => {
             slackapi.api.oauth.access(opts, (err, auth) => {
 
                 if (err) {
-                    // TODO: Do we want to change how this is being sent?
                     console.log('Error confirming oauth', err);
                     return res.json({'error': err});
-                    // return res.redirect('/login_error.html');
                 }
 
                 var scopes = auth.scope.split(/\,/);
@@ -33,7 +32,6 @@ module.exports = (webserver, controller) => {
                 slackapi.api.auth.test({token: auth.access_token}, (err, identity) => {
 
                     if (err) {
-                        // TODO: Do we want to change how this is being sent?
                         console.log('Error fetching user identity', err);
                         return res.send('Error logging in with Slack');
                     }

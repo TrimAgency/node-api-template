@@ -13,7 +13,13 @@ const teamSchema = new mongoose.Schema({
   name: { type: String, required: true },
   url: { type: String, required: true },
   createdBy:  { type: String, required: true },
-  bot: { type: Object, required: true, select: false },
+  bot: {
+    name: { type: String },
+    app_token: { type: String },
+    createdBy: { type: String },
+    user_id: { type: String },
+    token: { type: String }
+  },
 }, { timestamps: true });
 
 const Team = mongoose.model("Team", teamSchema);

@@ -11,7 +11,6 @@ import { greeting } from "../controllers/greetings.bot.controller";
 const env = process.env.NODE_ENV;
 
 // Initiate the bot controller and run the bot
-// TODO: I don't think verificationToken is working here. They haven't added that to their ts file
 const botOptions = {
   clientId: config[env].bot.slackClientId,
   clientSecret: config[env].bot.slackClientSecret,
@@ -19,7 +18,8 @@ const botOptions = {
   // opt-out of Botkit stat collection
   stats_optout: true,
   storage: botStorage(),
-  clientVerificationToken: config[env].bot.slackVerificationToken
+  // TODO: Confirm if this is working
+  // clientVerificationToken: config[env].bot.slackVerificationToken
 };
 
 // TODO: Add SlackControllerExtended here as the type for botConfigController
