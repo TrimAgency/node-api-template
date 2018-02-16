@@ -13,7 +13,8 @@
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jasmine-ts \"spec/**/*.spec.ts\"",
     "serve-debug": "nodemon --inspect dist/server.js",
-    "watch-debug": "concurrently -k \"npm run watch-ts\" \"npm run serve-debug\""
+    "watch-debug": "concurrently -k \"npm run watch-ts\" \"npm run serve-debug\"",
+    "postinstall": "npm run build"
   },
   "author": "Dominique Miller",
   "license": "ISC",
@@ -32,16 +33,15 @@
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
     "passport-local": "^1.0.0",
-    "request": "^2.83.0"
-  },
-  "devDependencies": {
+    "request": "^2.83.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
     "@types/bcrypt-nodejs": "0.0.30",
     "@types/body-parser": "^1.16.8",
     "@types/boom": "^4.3.8",
     "@types/cors": "^2.8.3",
     "@types/dotenv": "^4.0.2",
     "@types/express": "^4.11.0",
-    "@types/jasmine": "^2.8.2",
     "@types/jsonwebtoken": "^7.2.5",
     "@types/mongodb": "^2.2.18",
     "@types/mongoose": "^4.7.30",
@@ -51,17 +51,17 @@
     "@types/passport-http-bearer": "^1.0.31",
     "@types/passport-jwt": "^3.0.0",
     "@types/passport-local": "^1.0.32",
-    "@types/request": "^2.0.9",
+    "@types/request": "^2.0.9"
+  },
+  "devDependencies": {
     "@types/supertest": "^2.0.4",
+    "@types/jasmine": "^2.8.2",
     "jasmine": "^2.8.0",
     "jasmine-supertest": "^1.0.0",
     "jasmine-ts": "^0.2.1",
     "jasmine-ts-console-reporter": "^3.1.1",
     "nock": "^9.1.6",
     "nodemon": "^1.14.2",
-    "supertest": "^3.0.0",
-    "ts-node": "^4.1.0",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.2"
+    "supertest": "^3.0.0"
   }
 }
