@@ -3,7 +3,7 @@
 Express API written in Typescript
 
 Out of box features include:
-- slack botkit integration
+- slack botkit integration(https://trim.quip.com/HcHWAZmnhjp9)
 - User model with login / signup endpoint 
 - JWT authentication 
 - password encryption using bcrypt
