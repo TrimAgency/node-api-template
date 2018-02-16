@@ -18,7 +18,8 @@ interface Environment {
 
 const development = {
  app: {
-   port: parseInt(process.env.DEV_APP_PORT) || 3000
+   port: parseInt(process.env.DEV_APP_PORT) || 3000,
+   mandrill: process.env.MANDRILL
  },
  db: {
    name: process.env.DEV_DB_NAME,
@@ -32,7 +33,8 @@ const development = {
 };
 const test = {
  app: {
-   port: parseInt(process.env.TEST_APP_PORT) || 5000
+   port: parseInt(process.env.TEST_APP_PORT) || 5000,
+   mandrill: process.env.MANDRILL
  },
  db: {
    name: process.env.TEST_DB_NAME,
@@ -46,7 +48,8 @@ const test = {
 };
 const production = {
   app: {
-    port: parseInt(process.env.DEV_APP_PORT) || 3000
+    port: parseInt(process.env.DEV_APP_PORT) || 3000,
+    mandrill: process.env.MANDRILL
   },
   db: {
     name: process.env.PROD_DB_NAME,
