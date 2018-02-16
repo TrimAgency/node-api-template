@@ -1,7 +1,6 @@
 import * as Botkit from "botkit";
 import { config } from "../config/config";
 import { botStorage } from "./bot-storage";
-const botkitStorageMongo = require("botkit-storage-mongo");
 
 // Bot Controllers for Installation
 import * as teamRegistation from "./team-registration";
@@ -9,6 +8,7 @@ import * as teamRegistation from "./team-registration";
 // Bot Conversation Controllers
 import { onboarding } from "../bot-controllers/onboarding.bot.controller";
 import { greeting } from "../bot-controllers/greetings.bot.controller";
+import { teamJoin } from "../bot-controllers/team-join.bot.controller";
 
 const env = process.env.NODE_ENV;
 
@@ -32,3 +32,4 @@ botConfigController.startTicking();
 greeting(botConfigController);
 teamRegistation(botConfigController);
 onboarding(botConfigController);
+teamJoin(botConfigController);
