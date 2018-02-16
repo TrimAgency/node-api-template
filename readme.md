@@ -33,6 +33,8 @@ From your terminal:
 npm run build
 ```
 
+Compiled files are located in /dist folder.  Source maps included as well.
+
 ## Running tests
 From your terminal:
 ```
