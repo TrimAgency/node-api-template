@@ -15,12 +15,16 @@ Must have Node LTS version AND NPM or Yarn installed.
 * [Install Yarn](https://yarnpkg.com/en/docs/install)
 * [Install Node and NPM](https://nodejs.org/en/)
 
-## First time use
-
 
 ## Development server
 
-
+From your terminal:
+```
+npm run watch-debug
+```
+This will run the typscript compiler and your server, autoupdating as files are changes.
+![Screenshot](https://github.com/TrimAgency/node-api-template/blob/master/github/devtools-screenshot.png)
+Copy the chrome dev tools link and paste into your browser for debugging.
 
 ## Build
 From your terminal:
