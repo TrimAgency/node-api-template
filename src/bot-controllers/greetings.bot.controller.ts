@@ -1,5 +1,6 @@
 import * as Botkit from "botkit";
 
+// Allows your bot to reply to greetings!
 export const greeting = (botConfigController: Botkit.SlackController) => {
     botConfigController.hears(["^hello", "^hi", "^hey", "^howdy", "^yo", "^hola"], "direct_message,direct_mention",
       (bot, message) => {
