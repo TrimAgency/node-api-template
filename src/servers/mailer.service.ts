@@ -7,7 +7,7 @@ interface EmailOptions {
   to: "string";
   subject: "string";
   html: "string";
-  mandrilOptions?: Options;
+  mandrillOptions?: Options;
 }
 
 interface Options {
