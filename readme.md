@@ -24,6 +24,7 @@ npm run watch-debug
 ```
 This will run the typscript compiler and your server, autoupdating as files are changes.
 ![Screenshot](https://github.com/TrimAgency/node-api-template/blob/master/github/devtools-screenshot.png)
+
 Copy the chrome dev tools link and paste into your browser for debugging.
 
 ## Build
