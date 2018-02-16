@@ -8,9 +8,10 @@ const env = process.env.NODE_ENV;
 export const incomingBotWebhooks = (req: Request,
                                     res: Response,
                                     next: NextFunction) => {
+  const token = config[env].bot.slackVerificationToken;
+  const payload = req.body;
 
-  if (config[env].bot.slackVerificationToken === req.body.token) {
-    // Response to slack that webhook was received
+  if (token === payload.token) {
     res.status(200);
 
     botConfigController.handleWebhookPayload(req, res);

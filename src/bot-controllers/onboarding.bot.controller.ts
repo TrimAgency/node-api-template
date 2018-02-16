@@ -2,7 +2,6 @@ import * as Botkit from "botkit";
 
 // Onboarding message received after bot is successfully installed
 export const onboarding = (botConfigController: Botkit.SlackController) => {
-  // TODO: Need to fix types for bot and convo, and controller above
   botConfigController.on("onboard", (bot: any) => {
       console.log("Starting an onboarding experience!");
 
