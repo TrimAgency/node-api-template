@@ -7,13 +7,12 @@
     "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint",
     "serve": "node dist/server.js",
-    "watch-node": "nodemon dist/server.js",
+    "watch-node": "nodemon",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jasmine-ts \"spec/**/*.spec.ts\"",
     "serve-debug": "nodemon --inspect dist/server.js",
-    "watch-debug": "concurrently -k \"npm run watch-ts\" \"npm run serve-debug\"",
     "postinstall": "npm run build"
   },
   "author": "Dominique Miller",
@@ -23,7 +22,6 @@
     "body-parser": "^1.18.2",
     "boom": "^7.1.1",
     "botkit": "^0.6.8",
-    "concurrently": "^3.5.1",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
@@ -62,6 +60,7 @@
     "jasmine-ts-console-reporter": "^3.1.1",
     "nock": "^9.1.6",
     "nodemon": "^1.14.2",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "ts-node": "^4.1.0"
   }
 }
