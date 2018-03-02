@@ -20,9 +20,15 @@ Must have Node LTS version AND NPM or Yarn installed.
 
 From your terminal:
 ```
-npm run watch-debug
+nodemon
 ```
 This will run the typscript compiler and your server, autoupdating as files are changes.
+
+To run the server in debug mode
+```
+npm run watch-node
+```
+** this does not watch and recompile your file**
 ![Screenshot](https://github.com/TrimAgency/node-api-template/blob/master/github/devtools-screenshot.png)
 
 Copy the chrome dev tools link and paste into your browser for debugging.
