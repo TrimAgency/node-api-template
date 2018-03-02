@@ -18,12 +18,12 @@ interface Environment {
 
 const development = {
  app: {
-   port: parseInt(process.env.DEV_APP_PORT) || 3000,
+   port: parseInt(process.env.DEV_APP_PORT) || 4000,
    mandrill: process.env.MANDRILL
  },
  db: {
    name: process.env.DEV_DB_NAME,
-   connect: process.env.MONGO_URI
+   connect: process.env.MONGODB_URI
  },
  bot: {
   slackClientId: process.env.SLACK_CLIENT_ID,
@@ -38,7 +38,7 @@ const test = {
  },
  db: {
    name: process.env.TEST_DB_NAME,
-   connect: process.env.MONGO_URI_TEST
+   connect: process.env.MONGODB_URI_TEST
  },
  bot: {
   slackClientId: process.env.SLACK_CLIENT_ID,
@@ -48,12 +48,12 @@ const test = {
 };
 const production = {
   app: {
-    port: parseInt(process.env.DEV_APP_PORT) || 3000,
+    port: parseInt(process.env.PORT) || 8080,
     mandrill: process.env.MANDRILL
   },
   db: {
     name: process.env.PROD_DB_NAME,
-    connect: process.env.MONGO_URI
+    connect: process.env.MONGODB_URI
   },
   bot: {
     slackClientId: process.env.SLACK_CLIENT_ID,
