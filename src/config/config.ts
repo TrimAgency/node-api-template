@@ -1,9 +1,12 @@
 import * as dotenv from "dotenv";
 
-// Attach .env variables to process.env
-dotenv.config();
 
 const env = process.env.NODE_ENV;
+
+// Attach .env variables to process.env
+if (env !== "production") {
+  dotenv.config();
+}
 
 interface Config {
   [key: string]: Environment;
