@@ -28,7 +28,7 @@ export const seedModel = (name: string) => {
     models[name].data.forEach( (item, index) => {
       const count = index + 1;
       const length = models[name].data.length;
-      models[name].name.create(item, (err, doc: UserModel) => {
+      models[name].name.create(item, (err: Error, doc: UserModel) => {
         if (count === length) {
           res(doc);
         }
