@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { config } from "../config/config";
-import { botConfigController } from "../bot/bot";
+import { botConfigController } from "../bot-config/bot";
 
 const env = process.env.NODE_ENV;
 
