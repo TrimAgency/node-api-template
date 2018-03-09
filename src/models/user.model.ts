@@ -9,7 +9,7 @@ export type UserModel = mongoose.Document & {
 };
 
 const userSchema = new mongoose.Schema({
-  slackId: { type: String, required: true },
+  slackId: { type: String },
   email: { type: String, required: true },
   password: { type: String, required: true, select: false }
 }, { timestamps: true });

@@ -1,6 +1,7 @@
 export const users = [
   {
     email: "user@test.com",
-    password: "password"
+    password: "password",
+    slackId: "1234567"
   }
 ];
