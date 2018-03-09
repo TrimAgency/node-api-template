@@ -6,9 +6,9 @@ import { botStorage } from "./bot-storage";
 import * as teamRegistation from "./team-registration";
 
 // Bot Conversation Controllers
-import { onboarding } from "../bot-controllers/onboarding.bot.controller";
-import { greeting } from "../bot-controllers/greetings.bot.controller";
-import { teamJoin } from "../bot-controllers/team-join.bot.controller";
+import { onboarding } from "../bot-skills/shared/onboarding.bot.controller";
+import { greeting } from "../bot-skills/shared/greetings.bot.controller";
+import { teamJoin } from "../bot-skills/shared/team-join.bot.controller";
 
 const env = process.env.NODE_ENV;
 
@@ -28,7 +28,7 @@ const botOptions = {
 export const botConfigController: any = Botkit.slackbot(botOptions);
 botConfigController.startTicking();
 
-// Pass botConfig into bot controllers
+// Pass botConfig into the controllers of your bot's different skills
 greeting(botConfigController);
 teamRegistation(botConfigController);
 onboarding(botConfigController);

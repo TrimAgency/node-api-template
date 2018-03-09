@@ -1,13 +1,13 @@
 import { Express } from "express";
 import * as passport from "passport";
 import { errorHandler } from "./middleware/error.handler";
-import { incomingBotWebhooks } from "./bot/incoming-bot-webhooks";
-import * as oauth from "./bot/oauth";
+import { incomingBotWebhooks } from "./bot-config/incoming-bot-webhooks";
+import * as oauth from "./bot-config/oauth";
 
 // Controllers
 import * as loginController from "./controllers/login.controller";
 import * as signupController from "./controllers/signup.controller";
-import { botConfigController } from "./bot/bot";
+import { botConfigController } from "./bot-config/bot";
 
 export function routes(app: Express) {
   // add routes here
