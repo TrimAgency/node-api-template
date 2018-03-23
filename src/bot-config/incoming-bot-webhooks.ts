@@ -9,7 +9,7 @@ export const incomingBotWebhooks = (req: Request,
                                     res: Response,
                                     next: NextFunction) => {
   const token = config[env].bot.slackVerificationToken;
-  const payload = req.body;
+  const payload = req.body.payload ? JSON.parse(req.body.payload) : req.body;
 
   if (token === payload.token) {
     res.status(200);
