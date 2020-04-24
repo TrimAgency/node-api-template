@@ -1,0 +1,9 @@
+app:
+  build: .
+  ports:
+    - "4000:4000"
+    # TODO STEPH: Add mongo connection
+    # - "49153:49153"
+  volumes:
+    - .:/app
+  command: npm run watch-node
